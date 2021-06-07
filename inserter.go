@@ -139,14 +139,17 @@ func (s *state) Stage2Handler(w http.ResponseWriter, r *http.Request) {
 
 
 	flows_replace := make([]string, len(flow_fields))
-	for i := range s.flowsForCount {
+	//for i := range s.flowsForCount {
+	//	flows_replace[i] = fmt.Sprintf("$%v", i+1)
+	//	}
+	for i :=0;i< len(flows_replace);i++{
 		flows_replace[i] = fmt.Sprintf("$%v", i+1)
-		}
+	}
 
 for i  := range flows_replace {
 
 
-	src_ip := string(flow_fields[i][4])
+	src_ip := string(flow_fields[i][1])
 
 
 
@@ -203,6 +206,8 @@ type IP struct {
 	Bytes []int `json:"bytes"`
 	Peers []int `json:"peers"`
 }
+
+
 
 type state struct {
 	ready chan bool
